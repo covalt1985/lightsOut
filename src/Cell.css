@@ -1,0 +1,14 @@
+.Cell {
+  height: 5em;
+  width: 5em;
+  background-color: transparent;
+  transition: 500ms;
+  cursor: pointer;
+}
+
+.Cell-lit {
+  background-color: #fe731c;
+  box-shadow: 0 0 5px #fe731c;
+}
+
+ 
