@@ -55,9 +55,11 @@ class Board extends Component {
 
       for (let cell of row) {
         rows.push(
+
           <Cell isLit={cell} key={`${rowKey}-${cellKey}`} board={this.state.board}
             id={`${rowKey}-${cellKey}`} flipCellsAroundMe={this.flipCellsAround} />
         );
+
         cellKey++;
       };
 
@@ -76,36 +78,34 @@ class Board extends Component {
   };
 
   //flip clicked cell, and cells around
-  flipCellsAround(coord, brd) {
-    let board = brd
+  flipCellsAround(coord, board) {
+    let newBoard = board
     let [y, x] = coord.split("-").map(Number);
 
-    board = this.flipCell(y, x, brd);
-    board = this.flipCell(y - 1, x, brd);
-    board = this.flipCell(y + 1, x, brd);
-    board = this.flipCell(y, x - 1, brd);
-    board = this.flipCell(y, x + 1, brd);
+    board = this.flipCell(y, x, board);
+    board = this.flipCell(y - 1, x, board);
+    board = this.flipCell(y + 1, x, board);
+    board = this.flipCell(y, x - 1, board);
+    board = this.flipCell(y, x + 1, board);
 
     this.setState(() => ({
-      board: board
+      board: newBoard
     }));
 
-
     // win when every cell is turned off
-    this.checkIfWin()
+    this.checkIfWin();
+  };
 
-  }
-
-  flipCell(y, x, brd) {
-    let board = brd
+  flipCell(y, x, board) {
+    let newBoard = board
     let { ncols, nrows } = this.props;
 
     // if this coord is actually on board, flip it
 
     if (x >= 0 && x < ncols && y >= 0 && y < nrows) {
-      board[y][x] = !board[y][x];
+      newBoard[y][x] = !newBoard[y][x];
     }
-    return board
+    return newBoard
   }
 
   checkIfWin() {
@@ -125,8 +125,11 @@ class Board extends Component {
         </div>
 
         {this.state.hasWon ?
-          <div className='container'><div className='neon'>You</div> <div className='flux'> Win! </div></div> :
+          <div className='container'>
+            <div className='neon'>You</div> <div className='flux'> Win! </div>
+          </div> :
           <div className='Board'>{this.createBoard()}</div>}
+
         <h3>Turn off the lights {`:)`}</h3>
       </div>
     )
