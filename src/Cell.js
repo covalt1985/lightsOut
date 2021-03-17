@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import "./Cell.css";
 
+import './Cell.css';
 
 /** A single cell on the board.
  *
@@ -16,23 +16,20 @@ import "./Cell.css";
  **/
 
 class Cell extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  };
+ constructor(props) {
+  super(props);
+  this.handleClick = this.handleClick.bind(this);
+ }
 
-  handleClick() {
-    // call up to the board to flip cells around this cell
-    this.props.flipCellsAroundMe(this.props.id, this.props.board);
-  };
+ handleClick() {
+  // call up to the board to flip cells around this cell
+  this.props.flipCellsAround(this.props.x, this.props.y, this.props.board);
+ }
 
-  render() {
-    let classes = "Cell" + (this.props.isLit ? " Cell-lit" : "");
-    return (
-      <td className={classes} onClick={this.handleClick} />
-    );
-  };
-};
-
+ render() {
+  let classes = 'Cell' + (this.props.isLit ? ' Cell-lit' : ''); //bez konkatenacji
+  return <td className={classes} onClick={this.handleClick} />;
+ }
+}
 
 export default Cell;
