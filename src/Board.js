@@ -41,7 +41,7 @@ class Board extends Component {
    let y = randomNumber();
    let x = randomNumber();
 
-   this.flipCell(y, x, board);
+   this.flipCellsAround(y, x, board);
    count = count + 1;
   }
  }
@@ -89,7 +89,6 @@ class Board extends Component {
   }));
 
   // win when every cell is turned off
-  this.checkIfWin();
  }
 
  flipCell(y, x, board) {
@@ -105,7 +104,7 @@ class Board extends Component {
  }
 
  checkIfWin() {
-  if (this.state.board.every((row) => row.every((cell) => !cell))) {
+  if (this.state.board.every(row => row.every(cell => !cell))) {
    this.setState(() => ({ hasWon: true }));
   }
  }
@@ -113,6 +112,7 @@ class Board extends Component {
  render() {
   return (
    <div>
+    {!this.state.hasWon ? this.checkIfWin() : ''}
     <div className="container">
      <div className="neon">Lights </div>
      <div className="flux">Out </div>
