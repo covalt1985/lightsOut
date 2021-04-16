@@ -1,13 +1,13 @@
 {
   "main.css": "/lightsOut/static/css/main.c3288d45.chunk.css",
-  "main.js": "/lightsOut/static/js/main.d932570d.chunk.js",
-  "main.js.map": "/lightsOut/static/js/main.d932570d.chunk.js.map",
+  "main.js": "/lightsOut/static/js/main.d0cd755b.chunk.js",
+  "main.js.map": "/lightsOut/static/js/main.d0cd755b.chunk.js.map",
   "static/js/1.a5874422.chunk.js": "/lightsOut/static/js/1.a5874422.chunk.js",
   "static/js/1.a5874422.chunk.js.map": "/lightsOut/static/js/1.a5874422.chunk.js.map",
   "runtime~main.js": "/lightsOut/static/js/runtime~main.7bb51e06.js",
   "runtime~main.js.map": "/lightsOut/static/js/runtime~main.7bb51e06.js.map",
   "static/css/main.c3288d45.chunk.css.map": "/lightsOut/static/css/main.c3288d45.chunk.css.map",
   "index.html": "/lightsOut/index.html",
-  "precache-manifest.38091567ebc2821a4be9e038e429fda9.js": "/lightsOut/precache-manifest.38091567ebc2821a4be9e038e429fda9.js",
+  "precache-manifest.1050dd4ed8876439acd16360afaad4cd.js": "/lightsOut/precache-manifest.1050dd4ed8876439acd16360afaad4cd.js",
   "service-worker.js": "/lightsOut/service-worker.js"
 }

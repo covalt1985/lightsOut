@@ -1,6 +1,6 @@
 .Cell {
-  height: 5em;
-  width: 5em;
+  height: calc(1rem + 3vw);
+  width: calc(1rem + 3vw);
   background-color: transparent;
   transition: 500ms;
   cursor: pointer;
@@ -10,5 +10,3 @@
   background-color: #fe731c;
   box-shadow: 0 0 5px #fe731c;
 }
-
- 
