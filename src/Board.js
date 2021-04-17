@@ -116,7 +116,7 @@ class Board extends Component {
     let newBoard = this.setInitialBoardState();
     this.initialShuffle(newBoard);
 
-    this.setState({ board: newBoard });
+    this.setState({ board: newBoard, hasWon: false });
   }
 
   render() {
@@ -132,7 +132,7 @@ class Board extends Component {
         {this.state.hasWon ? (
           <div className="container">
             <div className="neon">You</div> <div className="flux"> Win! </div>
-            <button>Restart</button>
+            <button onClick={this.restartBoard}>Restart</button>
           </div>
         ) : (
           <div className="boardContainer">
