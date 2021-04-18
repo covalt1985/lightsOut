@@ -9,14 +9,18 @@ class Cell extends Component {
   }
 
   handleClick() {
-    // call up to the board to flip cells around this cell and flips cell in hintBoard
+    // flip this cell, cells around and flips cell in hintBoard
     this.props.flipCellsAround(this.props.x, this.props.y, this.props.board);
     this.props.flipCell(this.props.x, this.props.y, this.props.hintBoard);
   }
 
   render() {
-    let mainBoardClasses = `Cell ${this.props.isLit ? ' Cell-lit' : ''} ${
-      this.props.hintBoard[this.props.x][this.props.y] ? 'hint' : ''
+    let mainBoardClasses = `board_cell ${
+      this.props.isLit ? 'board_cell-lit' : ''
+    } ${
+      this.props.showHint && this.props.hintBoard[this.props.x][this.props.y]
+        ? 'board_cell-hint'
+        : ''
     }`;
     return <td className={`${mainBoardClasses}`} onClick={this.handleClick} />;
   }

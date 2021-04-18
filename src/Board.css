@@ -1,20 +1,3 @@
-.Board {
-  display: inline-flex;
-  box-shadow: 0px 2px 15px rgb(243 63 174);
-}
-td {
-  border: 1px solid #1ba7fe;
-}
-table {
-  border-collapse: collapse;
-}
-
-p {
-  color: #fe731c;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-size: 2rem;
-  letter-spacing: 1px;
-}
 .wrapper {
   width: 90vw;
   height: 90vh;
@@ -25,22 +8,33 @@ p {
   align-items: center;
 }
 
-@font-face {
-  font-family: neon;
-  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .boardContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.boardContainer_board {
+  display: inline-flex;
+  box-shadow: 0px 2px 15px rgb(243 63 174);
+}
+
+td {
+  border: 1px solid #1ba7fe;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+p {
+  color: #fe731c;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+/* Button */
 
 button {
   letter-spacing: 0.1em;
@@ -71,14 +65,27 @@ button:active {
   padding-top: 5px;
 }
 
-.neon {
+/* Neons */
+
+.neonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@font-face {
+  font-family: neon;
+  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
+}
+
+.neonContainer_lights {
   font-family: neon;
   color: #fb4264;
   font-size: 3em;
   text-shadow: 0 0 3vw #f40a35;
 }
 
-.flux {
+.neonContainer_out {
   font-family: neon;
   color: #426dfb;
   font-size: 4em;
@@ -86,14 +93,14 @@ button:active {
   margin-bottom: 1rem;
 }
 
-.neon {
+.neonContainer_lights {
   margin: 1rem 0;
-  animation: neon 1s ease infinite;
-  -moz-animation: neon 1s ease infinite;
-  -webkit-animation: neon 1s ease infinite;
+  animation: lights 1.5s ease infinite;
+  -moz-animation: lights 1.5s ease infinite;
+  -webkit-animation: lights 1.5s ease infinite;
 }
 
-@keyframes neon {
+@keyframes lights {
   0%,
   100% {
     text-shadow: 0 0 1vw #fa1c16, 0 0 3vw #fa1c16, 0 0 10vw #fa1c16,
@@ -107,14 +114,14 @@ button:active {
   }
 }
 
-.flux {
-  animation: flux 2s linear infinite;
-  -moz-animation: flux 2s linear infinite;
-  -webkit-animation: flux 2s linear infinite;
-  -o-animation: flux 2s linear infinite;
+.neonContainer_out {
+  animation: out 2s linear infinite;
+  -moz-animation: out 2s linear infinite;
+  -webkit-animation: out 2s linear infinite;
+  -o-animation: out 2s linear infinite;
 }
 
-@keyframes flux {
+@keyframes out {
   0%,
   100% {
     text-shadow: 0 0 1vw #1041ff, 0 0 3vw #1041ff, 0 0 10vw #1041ff,

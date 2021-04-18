@@ -1,4 +1,4 @@
-.Cell {
+.board_cell {
   height: calc(1rem + 3vw);
   width: calc(1rem + 3vw);
   background-color: transparent;
@@ -6,20 +6,12 @@
   cursor: pointer;
 }
 
-.Cell-lit {
+.board_cell-lit {
   background-color: #fe731c;
   box-shadow: 0 0 5px #fe731c;
 }
 
-.hint {
-  animation: hint 1s infinite;
-}
-@keyframes hint {
-  0%,
-  100% {
-    background-color: transparent;
-  }
-  50% {
-    background-color: #fe731c;
-  }
+.board_cell-hint {
+  background-color: teal;
+  box-shadow: 0 0 5px teal;
 }

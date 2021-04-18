@@ -19,6 +19,7 @@ class Board extends Component {
       hasWon: false,
       board: this.setInitialBoardState(),
       hintBoard: JSON.parse(JSON.stringify(solvedBoard)),
+      showHint: false,
     };
 
     this.flipCellsAround = this.flipCellsAround.bind(this);
@@ -99,6 +100,7 @@ class Board extends Component {
             board={this.state.board}
             flipCell={this.flipCell}
             hintBoard={this.state.hintBoard}
+            showHint={this.state.showHint}
           />
         );
       });
@@ -129,6 +131,7 @@ class Board extends Component {
     this.setState({
       board: newBoardAfterReset,
       hasWon: false,
+      showHint: false,
     });
   }
 
@@ -139,19 +142,20 @@ class Board extends Component {
   render() {
     return (
       <div className="wrapper">
-        <div className="container">
-          <div className="neon">Lights </div>
-          <div className="flux">Out </div>
+        <div className="neonContainer">
+          <div className="neonContainer_lights">Lights </div>
+          <div className="neonContainer_out">Out </div>
         </div>
 
         {this.state.hasWon ? (
-          <div className="container">
-            <div className="neon">You</div> <div className="flux"> Win! </div>
+          <div className="neonContainer">
+            <div className="neonContainer_lights">You</div>{' '}
+            <div className="neonContainer_out"> Win! </div>
             <button onClick={this.restartBoard}>Restart</button>
           </div>
         ) : (
           <div className="boardContainer">
-            <div className="Board">{this.createBoard()}</div>
+            <div className="boardContainer_board">{this.createBoard()}</div>
             <button onClick={this.restartBoard}>Restart</button>
           </div>
         )}
