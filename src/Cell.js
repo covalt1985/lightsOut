@@ -2,34 +2,24 @@ import React, { Component } from 'react';
 
 import './Cell.css';
 
-/** A single cell on the board.
- *
- * This has no state --- just two props:
- *
- * - flipCellsAroundMe: a function rec'd from the board which flips this
- *      cell and the cells around of it
- *
- * - isLit: boolean, is this cell lit?
- *
- * This handles clicks --- by calling flipCellsAroundMe
- *
- **/
-
 class Cell extends Component {
- constructor(props) {
-  super(props);
-  this.handleClick = this.handleClick.bind(this);
- }
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
- handleClick() {
-  // call up to the board to flip cells around this cell
-  this.props.flipCellsAround(this.props.x, this.props.y, this.props.board);
- }
+  handleClick() {
+    // call up to the board to flip cells around this cell and flips cell in hintBoard
+    this.props.flipCellsAround(this.props.x, this.props.y, this.props.board);
+    this.props.flipCell(this.props.x, this.props.y, this.props.hintBoard);
+  }
 
- render() {
-  let classes = 'Cell' + (this.props.isLit ? ' Cell-lit' : ''); //bez konkatenacji
-  return <td className={classes} onClick={this.handleClick} />;
- }
+  render() {
+    let mainBoardClasses = `Cell ${this.props.isLit ? ' Cell-lit' : ''} ${
+      this.props.hintBoard[this.props.x][this.props.y] ? 'hint' : ''
+    }`;
+    return <td className={`${mainBoardClasses}`} onClick={this.handleClick} />;
+  }
 }
 
 export default Cell;

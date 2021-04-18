@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 import Cell from './Cell';
 import './Board.css';
+
+//import board with solution
+import { solvedBoard } from './solvedBoard';
+
 class Board extends Component {
   static defaultProps = {
     nrows: 5,
@@ -11,17 +15,17 @@ class Board extends Component {
   constructor(props) {
     super(props);
 
-    this.flipCellsAround = this.flipCellsAround.bind(this);
-    this.restartBoard = this.restartBoard.bind(this);
-
     this.state = {
       hasWon: false,
       board: this.setInitialBoardState(),
+      hintBoard: JSON.parse(JSON.stringify(solvedBoard)),
     };
+
+    this.flipCellsAround = this.flipCellsAround.bind(this);
+    this.restartBoard = this.restartBoard.bind(this);
   }
 
-  // Sets winnable board from 10 random moves
-
+  //create pure board
   setInitialBoardState() {
     let initialBoard = [];
 
@@ -32,19 +36,53 @@ class Board extends Component {
     return initialBoard;
   }
 
-  initialShuffle(board) {
+  //shuffle playing and solved board with the same moves
+  initialShuffle(board, unFLippedSolvedBoard) {
+    const flippedSolvedBoard = [...unFLippedSolvedBoard];
     let count = 0;
     const randomNumber = () => Math.floor(Math.random() * this.props.nrows);
 
-    while (count < 5) {
+    while (count < 10) {
       let y = randomNumber();
       let x = randomNumber();
 
       this.flipCellsAround(y, x, board);
+      this.flipCell(y, x, flippedSolvedBoard);
       count = count + 1;
     }
+    this.setState({ hintBoard: flippedSolvedBoard });
   }
 
+  //flip clicked cell, and cells around
+  flipCellsAround(x, y, board) {
+    let newBoard = board;
+
+    board = this.flipCell(x, y, board);
+    board = this.flipCell(x - 1, y, board);
+    board = this.flipCell(x + 1, y, board);
+    board = this.flipCell(x, y - 1, board);
+    board = this.flipCell(x, y + 1, board);
+
+    this.setState(() => ({
+      board: newBoard,
+    }));
+    return !this.state.hasWon ? this.checkIfWin() : '';
+  }
+
+  flipCell(x, y, board) {
+    let newBoard = board;
+    const ncols = 5;
+    const nrows = 5;
+
+    // if this coord is actually on board, flip it
+
+    if (y >= 0 && y < ncols && x >= 0 && x < nrows) {
+      newBoard[x][y] = !newBoard[x][y];
+    }
+    return newBoard;
+  }
+
+  //board to render
   createBoard() {
     const board = [];
     let singleRow = [];
@@ -59,13 +97,14 @@ class Board extends Component {
             flipCellsAround={this.flipCellsAround}
             isLit={cell}
             board={this.state.board}
+            flipCell={this.flipCell}
+            hintBoard={this.state.hintBoard}
           />
         );
       });
       board.push(<tr key={rowIndex}>{singleRow}</tr>);
       singleRow = [];
     });
-
     return (
       <table>
         <tbody>{board}</tbody>
@@ -73,57 +112,33 @@ class Board extends Component {
     );
   }
 
-  //flip clicked cell, and cells around
-  flipCellsAround(y, x, board) {
-    let newBoard = board;
-
-    board = this.flipCell(y, x, board);
-    board = this.flipCell(y - 1, x, board);
-    board = this.flipCell(y + 1, x, board);
-    board = this.flipCell(y, x - 1, board);
-    board = this.flipCell(y, x + 1, board);
-
-    this.setState(() => ({
-      board: newBoard,
-    }));
-
-    // win when every cell is turned off
-  }
-
-  flipCell(y, x, board) {
-    let newBoard = board;
-    let { ncols, nrows } = this.props;
-
-    // if this coord is actually on board, flip it
-
-    if (x >= 0 && x < ncols && y >= 0 && y < nrows) {
-      newBoard[y][x] = !newBoard[y][x];
-    }
-    return newBoard;
-  }
-
+  // win when every cell is false
   checkIfWin() {
     if (this.state.board.every(row => row.every(cell => !cell))) {
       this.setState(() => ({ hasWon: true }));
     }
   }
 
-  componentDidMount() {
-    this.initialShuffle(this.state.board);
+  restartBoard() {
+    const newBoardAfterReset = this.setInitialBoardState();
+    this.initialShuffle(
+      newBoardAfterReset,
+      JSON.parse(JSON.stringify(solvedBoard))
+    );
+
+    this.setState({
+      board: newBoardAfterReset,
+      hasWon: false,
+    });
   }
 
-  restartBoard() {
-    let newBoard = this.setInitialBoardState();
-    this.initialShuffle(newBoard);
-
-    this.setState({ board: newBoard, hasWon: false });
+  componentDidMount() {
+    this.initialShuffle(this.state.board, this.state.hintBoard);
   }
 
   render() {
     return (
       <div className="wrapper">
-        {!this.state.hasWon ? this.checkIfWin() : ''}
-
         <div className="container">
           <div className="neon">Lights </div>
           <div className="flux">Out </div>

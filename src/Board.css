@@ -11,8 +11,9 @@ table {
 
 p {
   color: #fe731c;
-  font-family: cursive;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 2rem;
+  letter-spacing: 1px;
 }
 .wrapper {
   width: 90vw;
