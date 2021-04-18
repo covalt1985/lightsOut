@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
+
+* {
+  font-family: 'Original Surfer', cursive;
+  letter-spacing: 1px;
+}
 .wrapper {
   width: 90vw;
   height: 90vh;
@@ -29,9 +35,15 @@ table {
 
 p {
   color: #fe731c;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 2rem;
   letter-spacing: 1px;
+}
+
+.boardContainer_inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Button */
@@ -42,6 +54,7 @@ button {
   background: rgb(24, 23, 23);
   width: 6em;
   height: 2em;
+  margin-bottom: 2rem;
   color: white;
   border-radius: 5px;
   outline: none;

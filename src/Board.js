@@ -5,6 +5,7 @@ import './Board.css';
 
 //import board with solution
 import { solvedBoard } from './solvedBoard';
+import Input from './Input';
 
 class Board extends Component {
   static defaultProps = {
@@ -24,6 +25,7 @@ class Board extends Component {
 
     this.flipCellsAround = this.flipCellsAround.bind(this);
     this.restartBoard = this.restartBoard.bind(this);
+    this.handleChecked = this.handleChecked.bind(this);
   }
 
   //create pure board
@@ -135,6 +137,12 @@ class Board extends Component {
     });
   }
 
+  handleChecked(e) {
+    e.target.checked
+      ? this.setState({ showHint: true })
+      : this.setState({ showHint: false });
+  }
+
   componentDidMount() {
     this.initialShuffle(this.state.board, this.state.hintBoard);
   }
@@ -156,7 +164,13 @@ class Board extends Component {
         ) : (
           <div className="boardContainer">
             <div className="boardContainer_board">{this.createBoard()}</div>
-            <button onClick={this.restartBoard}>Restart</button>
+            <div className="boardContainer_inputs">
+              <button onClick={this.restartBoard}>Restart</button>
+              <Input
+                handleChecked={this.handleChecked}
+                showHint={this.state.showHint}
+              />
+            </div>
           </div>
         )}
 
