@@ -5,7 +5,7 @@ import './input.css';
 class Input extends Component {
   render() {
     return (
-      <div>
+      <div className="boardContainer_inputs-input">
         <label className="boardContainer_inputs-label" htmlFor="hintCheckbox">
           Hint?
         </label>

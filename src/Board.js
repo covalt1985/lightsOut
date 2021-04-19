@@ -6,6 +6,7 @@ import './Board.css';
 //import board with solution
 import { solvedBoard } from './solvedBoard';
 import Input from './Input';
+import Button from './Button';
 
 class Board extends Component {
   static defaultProps = {
@@ -159,22 +160,28 @@ class Board extends Component {
           <div className="neonContainer">
             <div className="neonContainer_lights">You</div>{' '}
             <div className="neonContainer_out"> Win! </div>
-            <button onClick={this.restartBoard}>Restart</button>
+            <Button
+              hasWon={this.state.hasWon}
+              restart={this.restartBoard}></Button>
           </div>
         ) : (
           <div className="boardContainer">
             <div className="boardContainer_board">{this.createBoard()}</div>
-            <div className="boardContainer_inputs">
-              <button onClick={this.restartBoard}>Restart</button>
-              <Input
-                handleChecked={this.handleChecked}
-                showHint={this.state.showHint}
-              />
-            </div>
           </div>
         )}
 
         <p>Turn off the lights!</p>
+        <div
+          className="boardContainer_inputs"
+          style={this.state.hasWon ? { display: 'none' } : {}}>
+          <Button
+            hasWon={this.state.hasWon}
+            restart={this.restartBoard}></Button>
+          <Input
+            handleChecked={this.handleChecked}
+            showHint={this.state.showHint}
+          />
+        </div>
       </div>
     );
   }

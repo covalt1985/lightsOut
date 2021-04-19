@@ -5,9 +5,7 @@
   letter-spacing: 1px;
 }
 .wrapper {
-  width: 90vw;
   height: 90vh;
-  max-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -17,7 +15,7 @@
 .boardContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .boardContainer_board {
@@ -41,49 +39,16 @@ p {
 
 .boardContainer_inputs {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-/* Button */
-
-button {
-  letter-spacing: 0.1em;
-  font-size: 1em;
-  background: rgb(24, 23, 23);
-  width: 6em;
-  height: 2em;
-  margin-bottom: 2rem;
-  color: white;
-  border-radius: 5px;
-  outline: none;
-  border: none;
-  box-shadow: inset 0 0 0 0 rgb(255, 0, 68);
-  transition: ease-out 0.5s;
-  cursor: pointer;
-  margin-right: -120px;
-  margin-left: 20px;
-}
-
-button:hover:not([disabled]) {
-  box-shadow: inset -10em 0 0 0 rgb(255, 0, 68);
-}
-
-button:hover {
-  box-shadow: inset 10em 0 0 0 rgb(255, 0, 68);
-}
-
-button:active {
-  padding-top: 5px;
 }
 
 /* Neons */
 
 .neonContainer {
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  margin-bottom: 1rem;
 }
 
 @font-face {
@@ -92,6 +57,7 @@ button:active {
 }
 
 .neonContainer_lights {
+  margin: 1rem 1rem 0 0;
   font-family: neon;
   color: #fb4264;
   font-size: 3em;
@@ -99,15 +65,23 @@ button:active {
 }
 
 .neonContainer_out {
+  margin: 0 1rem 1rem 0;
   font-family: neon;
   color: #426dfb;
   font-size: 4em;
   text-shadow: 0 0 3vw #2356ff;
-  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .neonContainer_lights {
+    font-size: 2em;
+  }
+  .neonContainer_out {
+    font-size: 3em;
+  }
 }
 
 .neonContainer_lights {
-  margin: 1rem 0;
   animation: lights 1.5s ease infinite;
   -moz-animation: lights 1.5s ease infinite;
   -webkit-animation: lights 1.5s ease infinite;

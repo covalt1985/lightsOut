@@ -5,7 +5,12 @@
   transition: 500ms;
   cursor: pointer;
 }
-
+@media screen and (max-width: 600px) {
+  .board_cell {
+    height: calc(1rem + 8vw);
+    width: calc(1rem + 8vw);
+  }
+}
 .board_cell-lit {
   background-color: #fe731c;
   box-shadow: 0 0 5px #fe731c;
